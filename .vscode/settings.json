@@ -1,0 +1,24 @@
+{
+  "editor.fontSize": 14,
+  "editor.lineHeight": 22,
+  "window.zoomLevel": 4,
+  "editor.formatOnSave": false,
+  "editor.lineNumbers": "off",
+  // "editor.quickSuggestionsDelay": 1500,
+  "editor.hover.enabled": false,
+  "breadcrumbs.enabled": false,
+  "workbench.activityBar.visible": false,
+  "workbench.statusBar.visible": false,
+  "gitlens.mode.active": "zen",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    ".vscode": false,
+    "node_modules": true,
+    "public": true
+  },
+  "explorerExclude.backup": null
+}

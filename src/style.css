@@ -9,42 +9,69 @@ body {
   font-family: system-ui, sans-serif;
 }
 
-p {
-  font-size: 2rem;
+h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  margin-bottom: 1rem;
 }
 
 .poll {
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
   padding: 1rem;
   background-color: #fff;
+  border-radius: 0.5rem;
+  /* align-content: start; */
+}
+
+.poll:empty {
+  display: none;
+}
+
+.option {
+  display: grid;
+  gap: 0.5rem;
+  align-content: center;
+}
+
+label {
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 progress {
+  --base-hue: 260;
+  --hue: var(--base-hue);
+
   -webkit-appearance: none;
+  display: block;
+  width: 100%;
   height: 2rem;
 }
 
 ::-webkit-progress-bar {
-  background-color: #ccc;
-  border-radius: .5rem;
-  height: 2rem;
-  width: calc(100vw - 2rem);
+  background-color: hsl(var(--hue), 35%, 90%);
+  border: 1px solid hsl(var(--hue), 85%, 35%);
+  border-radius: 0.5rem;
 }
 
 ::-webkit-progress-value {
-  --hue: 260;
   background-color: hsl(var(--hue), 85%, 55%);
-  border-radius: .5rem;
-  height: 2rem;
-  width: calc(100vw - 2rem);
-  display: block;
+  /* 
+  Stripes!
+  background-image: repeating-linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0) 0 5px,
+    hsl(var(--hue), 35%, 90%) 5px 10px
+  ); */
+  border-radius: 0.5rem;
 }
 
-.option:nth-child(3n + 2) ::-webkit-progress-value {
-  --hue: 320;
+.option:nth-child(3n + 2) progress {
+  --hue: calc(var(--base-hue) + 60);
 }
 
-.option:nth-child(3n + 3) ::-webkit-progress-value {
-  --hue: 200;
+.option:nth-child(3n + 3) progress {
+  --hue: calc(var(--base-hue) - 60);
 }

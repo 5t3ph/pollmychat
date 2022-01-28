@@ -1,38 +1,33 @@
-
-// adding the options to the poll
-// saving a connection to each progress meter to 
-// ... update the value as new votes come in
+// Update the progress value as new votes come in
 // increment votes via !vote chat command
 // timeout the voting
 // optionally clear the poll from view
 
+const optionTemplate = document.getElementById("option");
 
 const createPoll = (message) => {
-  // !poll What is your favorite color? [blue, green, purple]
-
-  // <div class="option">
-  //   <p>Blue</p>
-  //   <progress max="100" value="50"></progress>
-  // </div>;
+  // !poll Which was the best boy band? [N'Sync, Backstreet Boys, Boyz II Men]
 
   const poll = document.querySelector(".poll");
   const optionsRe = /\[(.+?)\]/m;
   const optionsMatch = message.match(optionsRe);
-  const options = optionsMatch[1].split(',');
+  const options = optionsMatch[1].split(",");
 
-  const question = message.replace(optionsMatch[1], "").replace(" []", "");
+  const h1 = document.createElement("h1");
+  const question = message.replace(optionsMatch[0], "");
+  h1.innerText = question;
+  poll.appendChild(h1);
 
-  document.querySelector('h1').innerText = question;
-
-  options.map((value) => {
-    const opt = ''; // div
-    const heading = ''; // p
-    const progress = '';
-
+  options.map((value, i) => {
+    const optionId = `opt${i + 1}`;
+    const newOption = optionTemplate.content.cloneNode(true);
+    newOption.querySelector("label").textContent = `${i + 1}: ${value}`;
+    newOption.querySelector("progress").id = optionId;
+    poll.appendChild(newOption);
   });
-}
+};
 
-ComfyJS.onCommand = (user, command, message, flags, extra) => {
+ComfyJS.onCommand = (_user, command, message, flags, _extra) => {
   if (flags.broadcaster && command === "poll") {
     createPoll(message);
   }

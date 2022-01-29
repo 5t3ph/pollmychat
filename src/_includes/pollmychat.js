@@ -1,13 +1,16 @@
-// Update the progress value as new votes come in
-// increment votes via !vote chat command
 // timeout the voting
 // optionally clear the poll from view
 
+// !poll Which was the best boy band? [N'Sync, Backstreet Boys, Boyz II Men]
+
 const optionTemplate = document.getElementById("option");
+let numOptions = 0;
+let totalVotes = 0;
+const votes = {};
+const voteQueue = [];
+const voters = new Set();
 
 const createPoll = (message) => {
-  // !poll Which was the best boy band? [N'Sync, Backstreet Boys, Boyz II Men]
-
   const poll = document.querySelector(".poll");
   const optionsRe = /\[(.+?)\]/m;
   const optionsMatch = message.match(optionsRe);
@@ -25,11 +28,41 @@ const createPoll = (message) => {
     newOption.querySelector("progress").id = optionId;
     poll.appendChild(newOption);
   });
+
+  numOptions = options.length;
 };
 
-ComfyJS.onCommand = (_user, command, message, flags, _extra) => {
+const tallyVotes = () => {
+  for (id in votes) {
+    const bar = document.getElementById(id);
+    const value = (votes[id] / totalVotes) * 100;
+    bar.value = value;
+  }
+};
+
+const updateVote = () => {
+  while (voteQueue.length) {
+    const vote = parseInt(voteQueue.shift());
+    if (0 < vote && vote <= numOptions) {
+      const barId = `opt${vote}`;
+      const barTotal = votes[barId] || 0;
+      votes[barId] = barTotal + 1;
+      totalVotes += 1;
+      tallyVotes();
+    }
+  }
+};
+
+ComfyJS.onCommand = (user, command, message, flags, _extra) => {
   if (flags.broadcaster && command === "poll") {
     createPoll(message);
+  }
+
+  // if (command === "vote" && !voters.has(user)) {
+  //   voters.add(user);
+  if (command === "vote") {
+    voteQueue.push(message);
+    updateVote();
   }
 };
 

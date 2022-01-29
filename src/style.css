@@ -46,26 +46,38 @@ progress {
   --hue: var(--base-hue);
 
   -webkit-appearance: none;
+  appearance: none;
   display: block;
   width: 100%;
   height: 2rem;
+  border: 1px solid hsl(var(--hue), 85%, 35%);
 }
 
+progress,
 ::-webkit-progress-bar {
   background-color: hsl(var(--hue), 35%, 90%);
-  border: 1px solid hsl(var(--hue), 85%, 35%);
   border-radius: 0.5rem;
 }
 
 ::-webkit-progress-value {
   background-color: hsl(var(--hue), 85%, 55%);
-  /* 
-  Stripes!
+  /* Stripes! */
   background-image: repeating-linear-gradient(
     140deg,
     rgba(255, 255, 255, 0) 0 5px,
-    hsl(var(--hue), 35%, 90%) 5px 10px
-  ); */
+    rgba(255, 255, 255, 0.33) 5px 10px
+  );
+  border-radius: 0.5rem;
+}
+
+::-moz-progress-bar {
+  background-color: hsl(var(--hue), 85%, 55%);
+  /* Stripes! */
+  background-image: repeating-linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0) 0 5px,
+    rgba(255, 255, 255, 0.33) 5px 10px
+  );
   border-radius: 0.5rem;
 }
 

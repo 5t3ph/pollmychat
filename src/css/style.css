@@ -1,6 +1,7 @@
 header {
   display: grid;
   place-content: center;
+  gap: 1rem;
   padding: 5vh 1rem;
   background-color: hsl(220, 45%, 8%);
   color: #fff;

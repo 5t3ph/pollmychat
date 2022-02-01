@@ -4,9 +4,12 @@
 }
 
 body {
-  display: grid;
   min-height: 100vh;
   font-family: system-ui, sans-serif;
+}
+
+body.poll-embed {
+  display: grid;
   background-color: black;
 }
 
@@ -44,6 +47,16 @@ label {
 progress {
   --base-hue: 260;
   --hue: var(--base-hue);
+  --background-color: hsl(var(--hue), 85%, 50%);
+  /* Stripes! */
+  --background-image: repeating-linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0) 0 5px,
+    rgba(255, 255, 255, 0.33) 5px 10px
+  );
+  --border-radius: 0.5rem;
+  --transition: ease-in 30ms;
+  --border-right: 2px solid hsl(var(--hue), 85%, 35%);
 
   -webkit-appearance: none;
   appearance: none;
@@ -51,6 +64,7 @@ progress {
   width: 100%;
   height: 2rem;
   border: 1px solid hsl(var(--hue), 85%, 35%);
+  overflow: hidden;
 }
 
 progress,
@@ -60,31 +74,25 @@ progress,
 }
 
 ::-webkit-progress-value {
-  background-color: hsl(var(--hue), 85%, 55%);
-  /* Stripes! */
-  background-image: repeating-linear-gradient(
-    140deg,
-    rgba(255, 255, 255, 0) 0 5px,
-    rgba(255, 255, 255, 0.33) 5px 10px
-  );
-  border-radius: 0.5rem;
+  background-color: var(--background-color);
+  background-image: var(--background-image);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  border-right: var(--border-right);
 }
 
 ::-moz-progress-bar {
-  background-color: hsl(var(--hue), 85%, 55%);
-  /* Stripes! */
-  background-image: repeating-linear-gradient(
-    140deg,
-    rgba(255, 255, 255, 0) 0 5px,
-    rgba(255, 255, 255, 0.33) 5px 10px
-  );
-  border-radius: 0.5rem;
+  background-color: var(--background-color);
+  background-image: var(--background-image);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  border-right: var(--border-right);
 }
 
-.option:nth-child(3n + 2) progress {
+.option:nth-of-type(3n + 2) progress {
   --hue: calc(var(--base-hue) + 60);
 }
 
-.option:nth-child(3n + 3) progress {
+.option:nth-of-type(3n + 3) progress {
   --hue: calc(var(--base-hue) - 60);
 }

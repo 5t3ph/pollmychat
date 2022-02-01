@@ -1,11 +1,51 @@
 ---
 layout: base
 ---
-<div class="poll"></div>
-<template id="option">
-  <div class="option">
-    <label></label>
-    <progress id="" max="100" value="1"></progress>
-  </div>
-</template>
-
+<header>
+<h1>PollMyChat</h1>
+<p>A browser source Twitch poll widget created on-demand via the <code>!poll</code> chat command</p>
+</header>
+<main>
+<div class="poll-config">
+  <h2>Configure Your Poll</h2>
+  <form autocomplete="off">
+    <div class="form-group">
+      <label for="question">Question</label>
+      <input type="text" name="question" id="question" value="Which was the best boy band?">
+    </div>
+    <div class="form-group">
+      <label id="choices-label" for="choices">Choices</label>
+      <p id="choices-description"><small>Comma separated list</small></p>
+      <textarea aria-labelledby="choices-label choices description" name="choices" id="choices">N'Sync, Backstreet Boys, Boyz II Men</textarea>
+    </div>
+    <div class="form-group">
+      <label for="question">Starting Color</label>
+      <select name="color" id="color">
+        <option value="0">Red</option>
+        <option value="40">Orange</option>
+        <option value="60">Yellow</option>
+        <option value="125">Green</option>
+        <option value="200">Blue</option>
+        <option value="260" selected>Purple</option>
+        <option value="320">Pink</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <h3 class="label">Chat command</h3>
+      <p class="chat-command">!poll Which was the best boy band? [N'Sync, Backstreet Boys, Boyz II Men]</p>
+    </div>
+    <div class="form-group">
+      <h3 class="label">Browser source Url</h3>
+      <p class="embed-url">pollmychat.dev/TWITCHUSERNAME/260</p>
+    </div>
+  </form>
+</div>
+<div class="poll-container">
+  <button type="button" id="simulate">Simulate votes</button>
+  {% include "poll.njk" %}
+</div>
+</main>
+<footer>
+<p>&copy; {% year %} Stephanie Eckles - <a href="https://twitter.com/5t3ph">@5t3ph</a> - <a href="https://twitch.tv/5t3phDev">Twitch: 5t3phDev</a></p>
+<p>Find a bug? Have a request? <a href="https://github.com/5t3ph/pollmychat/issues">File an issue on GitHub</a></p>
+</footer>

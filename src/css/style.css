@@ -1,0 +1,149 @@
+header {
+  display: grid;
+  place-content: center;
+  padding: 5vh 1rem;
+  background-color: hsl(220, 45%, 8%);
+  color: #fff;
+  text-align: center;
+}
+
+header h1 {
+  font-size: clamp(2rem, 1rem + 8vw, 6rem);
+  max-width: 18ch;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(130deg, #f778c8, #2caeed, #9d71f4);
+}
+
+header h1::selection {
+  -webkit-text-fill-color: black;
+  background-color: mediumpurple;
+}
+
+header p {
+  font-size: 1.35rem;
+}
+
+code {
+  color: rgb(117, 215, 233);
+}
+
+h2 {
+  color: mediumpurple;
+  font-size: 2rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 30ch), 1fr));
+  gap: 2rem;
+  margin: 5vh auto;
+}
+
+main,
+footer {
+  width: min(100vw - 3rem, 120ch);
+}
+
+footer {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+footer p {
+  background-color: hsl(189, 73%, 90%);
+  border: 2px solid white;
+  border-image: linear-gradient(130deg, #f778c8, #2caeed, #9d71f4) 1;
+  padding: 1rem;
+  width: fit-content;
+}
+
+a {
+  color: inherit;
+}
+
+.poll-config,
+form {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.poll-container {
+  outline: 2px dashed #797979;
+  min-height: 60vh;
+}
+
+form label,
+h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.form-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+[type="text"],
+textarea,
+select,
+.chat-command {
+  font: inherit;
+  max-width: 30ch;
+  padding: 0.5em;
+  border: 2px solid #797979;
+  border-radius: 0.25em;
+}
+
+[type="text"] {
+  height: 2.5rem;
+}
+
+button {
+  all: unset;
+  background-color: #0498e0;
+  color: #fff;
+  font: inherit;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  justify-self: start;
+  align-self: start;
+  transform: translate(-0.5rem, -0.5rem);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 2px solid #2caeed;
+  outline-offset: 2px;
+}
+
+.chat-command,
+.embed-url {
+  -webkit-user-select: text;
+  user-select: all;
+  line-height: 1.5;
+}
+
+.chat-command {
+  border-style: dashed;
+}
+
+.embed-url {
+  font-size: 1.25rem;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+:not(h1)::selection {
+  -webkit-text-fill-color: black;
+  background-color: rgb(117, 215, 233);
+}

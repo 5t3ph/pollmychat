@@ -1,32 +1,52 @@
-// timeout the voting
-// optionally clear the poll from view
+// TODO: timeout the voting
 
 // !poll Which was the best boy band? [N'Sync, Backstreet Boys, Boyz II Men]
 
+const poll = document.querySelector(".poll");
 const optionTemplate = document.getElementById("option");
 let numOptions = 0;
 let totalVotes = 0;
-const votes = {};
-const voteQueue = [];
-const voters = new Set();
+let votes = {};
+let voteQueue = [];
+let voters = new Set();
 
-const createPoll = (message) => {
-  const poll = document.querySelector(".poll");
+const clearPoll = () => {
+  numOptions = 0;
+  totalVotes = 0;
+  votes = {};
+  voteQueue = [];
+  voters = new Set();
+  poll.innerHTML = "";
+};
+
+const createPoll = (message, newPoll = false) => {
   const optionsRe = /\[(.+?)\]/m;
   const optionsMatch = message.match(optionsRe);
-  const options = optionsMatch[1].split(",");
+  const options = optionsMatch ? optionsMatch[1].split(",") : [];
 
-  const h1 = document.createElement("h1");
-  const question = message.replace(optionsMatch[0], "");
+  const h1 = newPoll ? document.createElement("h1") : poll.querySelector("h1");
+  const question = optionsMatch ? message.replace(optionsMatch[0], "") : "";
   h1.innerText = question;
-  poll.appendChild(h1);
+
+  if (newPoll) {
+    poll.appendChild(h1);
+  }
 
   options.map((value, i) => {
     const optionId = `opt${i + 1}`;
-    const newOption = optionTemplate.content.cloneNode(true);
+    const itemId = `${optionId}-item`;
+
+    const newOption = newPoll
+      ? optionTemplate.content.cloneNode(true)
+      : document.getElementById(itemId);
+
     newOption.querySelector("label").textContent = `${i + 1}: ${value}`;
-    newOption.querySelector("progress").id = optionId;
-    poll.appendChild(newOption);
+
+    if (newPoll) {
+      newOption.querySelector(".option").id = itemId;
+      newOption.querySelector("progress").id = optionId;
+      poll.appendChild(newOption);
+    }
   });
 
   numOptions = options.length;
@@ -52,18 +72,3 @@ const updateVote = () => {
     }
   }
 };
-
-ComfyJS.onCommand = (user, command, message, flags, _extra) => {
-  if (flags.broadcaster && command === "poll") {
-    createPoll(message);
-  }
-
-  // if (command === "vote" && !voters.has(user)) {
-  //   voters.add(user);
-  if (command === "vote") {
-    voteQueue.push(message);
-    updateVote();
-  }
-};
-
-ComfyJS.Init("5t3phDev");

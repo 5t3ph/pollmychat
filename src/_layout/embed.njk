@@ -5,14 +5,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PollMy.Chat</title>
-  <link rel="stylesheet" href="{{ '/style.css' | url }}">
+  <link rel="stylesheet" href="{{ '/css/poll.css' | url }}">
 </head>
-<body>
+<body class="poll-embed">
   {{ content | safe }}
 
   <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
   <script>
-  {% include "pollmychat.js" %}
+  {% include "js/poll-functions.js" %}
+  {% include "js/pollmychat.js" %}
   </script>
 </body>
 </html>

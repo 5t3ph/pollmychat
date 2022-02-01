@@ -20,5 +20,9 @@
   "homepage": "https://github.com/5t3ph/pollmychat#readme",
   "dependencies": {
     "@11ty/eleventy": "^1.0.0"
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "not IE 11"
+  ]
 }

@@ -1,6 +1,8 @@
 ComfyJS.onCommand = (user, command, message, flags, _extra) => {
   if (flags.broadcaster && command === "poll") {
-    const newPoll = totalVotes === 0;
+    const optionsMatch = message.match(optionsRe);
+    const options = optionsMatch ? optionsMatch[1].split(",") : [];
+    const newPoll = options.length !== numOptions;
     createPoll(message, newPoll);
   }
 

@@ -1,9 +1,8 @@
 // TODO: timeout the voting
-
 // !poll Which was the best boy band? [N'Sync, Backstreet Boys, Boyz II Men]
-
 const poll = document.querySelector(".poll");
 const optionTemplate = document.getElementById("option");
+const optionsRe = /\[(.+?)\]/m;
 let numOptions = 0;
 let totalVotes = 0;
 let votes = {};
@@ -20,7 +19,6 @@ const clearPoll = () => {
 };
 
 const createPoll = (message, newPoll = false) => {
-  const optionsRe = /\[(.+?)\]/m;
   const optionsMatch = message.match(optionsRe);
   const options = optionsMatch ? optionsMatch[1].split(",") : [];
 

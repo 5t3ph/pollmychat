@@ -71,8 +71,10 @@ choices.addEventListener("keyup", (e) => {
 });
 
 const color = document.getElementById("color");
+const url = document.querySelector(".embed-url");
 color.addEventListener("change", (e) => {
   const hue = e.target.value;
   const theme = document.getElementById("theme");
   theme.innerHTML = `progress { --base-hue: ${hue} }`;
+  url.textContent = `pollmychat.dev/poll/TWITCHUSERNAME/${hue}`;
 });

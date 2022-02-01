@@ -1,5 +1,11 @@
 ---
 layout: embed
+permalink:
+  poll:
+    - /poll/:username
+    - /poll/:username/:hue
 ---
-
+{%- if eleventy.serverless.path.hue %}
+<style>progress { --base-hue: {{ eleventy.serverless.path.hue}}; }</style>
+{% endif -%}
 {% include "poll.njk" %}

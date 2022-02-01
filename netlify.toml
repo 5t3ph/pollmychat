@@ -1,0 +1,13 @@
+[[redirects]]
+from = "/poll/:username/:hue"
+to = "/.netlify/builders/poll"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "poll"
+
+[[redirects]]
+from = "/poll/:username"
+to = "/.netlify/builders/poll"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "poll"

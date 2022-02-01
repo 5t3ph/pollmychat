@@ -1,3 +1,5 @@
 node_modules
 public
 .vscode
+netlify/functions/poll/**
+!netlify/functions/poll/index.js

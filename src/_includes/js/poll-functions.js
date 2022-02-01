@@ -53,8 +53,9 @@ const createPoll = (message, newPoll = false) => {
 const tallyVotes = () => {
   for (id in votes) {
     const bar = document.getElementById(id);
-    const value = (votes[id] / totalVotes) * 100;
+    const value = 30 + (votes[id] / totalVotes) * 100;
     bar.value = value;
+    bar.dataset.value = votes[id];
   }
 };
 

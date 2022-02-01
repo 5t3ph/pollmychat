@@ -65,6 +65,24 @@ progress {
   height: 2rem;
   border: 1px solid hsl(var(--hue), 85%, 35%);
   overflow: hidden;
+  position: relative;
+}
+
+progress::after {
+  content: attr(data-value);
+  position: absolute;
+  display: grid;
+  place-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4ch;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 500;
+  background-color: hsl(var(--hue), 85%, 35%);
 }
 
 progress,

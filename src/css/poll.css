@@ -57,6 +57,7 @@ progress {
   --border-radius: 0.5rem;
   --transition: ease-in 30ms;
   --border-right: 2px solid hsl(var(--hue), 85%, 35%);
+  --min-width: 7ch;
 
   -webkit-appearance: none;
   appearance: none;
@@ -97,6 +98,7 @@ progress,
   border-radius: var(--border-radius);
   transition: var(--transition);
   border-right: var(--border-right);
+  min-width: var(--min-width);
 }
 
 ::-moz-progress-bar {
@@ -105,6 +107,7 @@ progress,
   border-radius: var(--border-radius);
   transition: var(--transition);
   border-right: var(--border-right);
+  min-width: var(--min-width);
 }
 
 .option:nth-of-type(3n + 2) progress {

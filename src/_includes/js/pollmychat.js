@@ -17,4 +17,4 @@ ComfyJS.onCommand = (user, command, message, flags, _extra) => {
   }
 };
 
-ComfyJS.Init("5t3phDev");
+ComfyJS.Init("{{ eleventy.serverless.path.username }}");
